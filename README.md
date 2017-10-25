@@ -19,6 +19,9 @@ var options = {
     //Do you want to print download progress on console? Default = true
     verbose : true,
 
+    //name that you want the file to be saved in
+    fileName : 'fileName.jpg',
+
     //Overide the inbuild progress function with your own
     progress : function (progress) {
         console.log(progress);
@@ -39,6 +42,7 @@ downloadStat(url, options)
 
 Download Stat options are as follows:
 - **dest** : where downloaded files are to be saved. Note, this must be an existing path!
+- **fileName** : *Optional.* A name that will be allocated to the file upon saving to disk. 
 - **verbose** : *Optional.* Do you want to print download progress on console? *Default is true.*
 - **progress** : *Optional.* A function that overides the inbuild progress function with your own. By default, [ora](https://www.npmjs.com/package/ora) is used to log download status on the console.
 

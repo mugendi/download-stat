@@ -103,13 +103,14 @@ d.prototype = {
     let self = this;
     return new Promise((resolve, reject) => {
 
-      filename = path.basename(stat.url.replace(/[\?#].+/, ''));
+
 
       if (typeof self.options.dest !== 'string' || !fs.existsSync(self.options.dest)) {
         throw new Error("The directory " + self.options.dest + " does not exist!")
       }
 
-      let downloaded_file = path.join(self.options.dest, filename),
+      let fileName = self.options.fileName || path.basename(stat.url.replace(/[\?#].+/, '')),
+        downloaded_file = path.join(self.options.dest, fileName),
         progress_stream = progress({
           time: 100,
           length: stat.size
@@ -123,7 +124,7 @@ d.prototype = {
 
 
       //create temporary file where we stream  to
-      temp.open(filename, function (err, tempFile) {
+      temp.open(fileName, function (err, tempFile) {
 
         //create stream
         let stream = download(stat.url, self.options);
