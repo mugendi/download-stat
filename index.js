@@ -47,7 +47,7 @@ var d = function (url, opts) {
       .then(function (stat) {
         return self.dload(stat)
       })
-      // .then(console.log)
+      .then(resolve)
       .catch(reject)
 
   });
@@ -61,6 +61,17 @@ d.prototype = {
     let self = this;
 
     return new Promise((resolve, reject) => {
+
+      //if size is set
+      if (Number(self.options.size)) {
+        let statObj = {
+          url: url,
+          size: self.options.size
+        };
+
+        return resolve(statObj);
+      }
+
 
       if (self.options.verbose) this.spinner.info('Getting URL details...');
 
