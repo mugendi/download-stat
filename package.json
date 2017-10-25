@@ -1,6 +1,6 @@
 {
   "name": "download-stat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Download files and monitor and show the status of that download.",
   "main": "index.js",
   "scripts": {
