@@ -105,14 +105,11 @@ d.prototype = {
 
       filename = path.basename(stat.url.replace(/[\?#].+/, ''));
 
-      //make directory & file name
-      let dest = path.join(__dirname, self.options.dest);
-
-      if (!fs.existsSync(dest)) {
-        throw new Error("The directory " + dest + " does not exist!")
+      if (typeof self.options.dest !== 'string' || !fs.existsSync(self.options.dest)) {
+        throw new Error("The directory " + self.options.dest + " does not exist!")
       }
 
-      let downloaded_file = path.join(dest, filename),
+      let downloaded_file = path.join(self.options.dest, filename),
         progress_stream = progress({
           time: 100,
           length: stat.size
